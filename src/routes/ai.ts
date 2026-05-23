@@ -26,7 +26,13 @@ router.post(
     next: NextFunction,
   ) => {
     try {
-      const { text } = req.body;
+      const text = req.body?.text;
+
+      if (!text) {
+        return res.status(400).json({
+          error: "Text is required",
+        });
+      }
 
       // if the text field is missing, not a string, or empty after trimming, return a 400 error
       if (typeof text !== "string" || !text.trim()) {
@@ -59,7 +65,17 @@ router.post(
     next: NextFunction,
   ) => {
     try {
-      const { text, tone = "professional" } = req.body;
+      const text = req.body?.text;
+      let tone = req.body?.tone;
+
+      if (!text) {
+        return res.status(400).json({
+          error: "Text is required",
+        });
+      }
+      if (!tone) {
+        tone = "professional";
+      }
 
       // Validate the text field
       if (typeof text !== "string" || !text.trim()) {
