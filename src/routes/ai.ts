@@ -25,6 +25,11 @@ router.post(
     res: Response,
     next: NextFunction,
   ) => {
+    if (req.headers["backend-secret"] !== process.env.BACKEND_SECRET) {
+      return res.status(403).json({
+        error: "Forbidden",
+      });
+    }
     try {
       const text = req.body?.text;
 
@@ -64,6 +69,11 @@ router.post(
     res: Response,
     next: NextFunction,
   ) => {
+    if (req.headers["backend-secret"] !== process.env.BACKEND_SECRET) {
+      return res.status(403).json({
+        error: "Forbidden",
+      });
+    }
     try {
       const text = req.body?.text;
       let tone = req.body?.tone;
