@@ -2,29 +2,31 @@
   "name": "usage-based-access-node",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "server.ts",
   "scripts": {
+    "dev": "nodemon --watch src --exec \"tsx src/server.ts\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch src --ext ts,json --exec \"node --loader ts-node/esm src/server.ts\"",
-    "build": "tsc",
-    "start": "node src/server.js"
+    "build": "tsc --project tsconfig.json",
+    "start": "node dist/server.js"
   },
   "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@openrouter/sdk": "^0.12.35",
     "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "openai": "^4.9.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^25.9.1",
-    "dotenv": "^17.4.2",
     "nodemon": "^3.1.14",
     "prettier": "^3.8.3",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
     "typescript": "^6.0.3"
   }
 }
